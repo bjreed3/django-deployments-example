@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <ul class="navbar-nav">
+          <li class="navbar-brand"><a href="{% url 'index' %}">Home</a></li>
+          <li><a class="nav-link" href="{% url 'brianjreed_app:register' %}">Register</a></li>
+          <li><a class="nav-link" href="{% url 'brianjreed_app:other' %}">Other</a></li>
+          <li><a class="nav-link" href="{% url 'brianjreed_app:aboutme' %}">About Me</a></li>
+          <li><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
+
+          {% if user.is_authenticated %}
+            <li><a class='nav-link' href="{% url 'logout' %}">Log out</a> </li>
+          {% else %}
+
+            <li><a class="nav-link" href="{% url 'brianjreed_app:user_login'%}">Log in</a> </li>
+
+          {% endif %}
+        </ul>
+      </div>
+     </nav>
+    <div class="container">
+      <div class="jumbotron">
+      {% block body_block %}
+      {% endblock %}
+     </div>
+    </div>
+  </body>
+</html>
